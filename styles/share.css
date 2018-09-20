@@ -1,0 +1,103 @@
+body {
+  text-align: center;
+  font-family: helvetica;
+  margin: 0;
+  background: url("../images/circuits.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+.header {
+  margin: 0;
+  width: 100vw;
+  color: white;
+  padding: 20px 0 20px 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+h1 {
+  margin: 0;
+  font-weight: lighter;
+}
+/* .home-btn {
+  font-family: helvetica;
+  border: 0;
+  font-size: 24pt;
+  background-color: teal;
+  color: white;
+  margin: 0;
+  font-weight: lighter;
+} */
+.logout-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #dd4b47;
+  padding: 8px;
+  border-radius: 4px;
+  position: absolute; /* ensures that the button stay right */
+  right: 0;
+  margin-right: 10px;
+}
+.btn:hover {
+  background-color: #822522;
+}
+.btn:focus {
+  outline: none;
+}
+.bg {
+  height: 100vh;
+}
+.padding {
+  height: 40px;
+}
+.container {
+  background-color: #ffffffcf;
+  height: 60vh;
+  width: 40vw;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 15px 15px 33px -8px #000000;
+}
+.label {
+  padding: 40px 0 20px 0;
+  font-size: 18pt;
+  font-weight: lighter;
+}
+select {
+  font-size: 12pt;
+  width: 200px;
+  height: 30px;
+}
+h3 {
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.col {
+  display: inline-block;
+  padding-right: 15px;
+  text-align: left;
+  font-size: 14pt;
+}
+input[type=checkbox] {
+  font-weight: lighter;
+}
+input[type=submit] {
+  border: 0;
+  font-size: 12pt;
+  background-color: #dd4b47;
+  color: white;
+  border-radius: 5px;
+  padding: 8px;
+}
+.below {
+  background-color: #ffffffd9;
+  height: 88px;
+  width: 100vw;
+  display: flex;
+}
+.below-box {
+  font-family: helvetica;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 14pt;
+  margin: auto;
+}

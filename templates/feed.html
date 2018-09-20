@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feed</title>
+  <link rel="stylesheet" href="../styles/feed.css">
+  <link rel="shortcut icon" href="../images/PlayShare_logo.png"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('#show_btn').click(function() {
+      $(".sort").animate({height: 'toggle'});
+    });
+  });
+  </script>
+  <div class="header">
+    <h1>PlayShare</h1>
+    <!-- <form method="post" action="/main">
+      <input class="home-btn" type="submit" value="PlayShare"></input>
+    </form> -->
+    <a class="logout-btn btn" href="{{logout_link}}">Sign out</a>
+    <button id="show_btn" class="navbutton btn">search by genre/mood</button>
+  </div>
+  <div class="bg">
+    <div class="sort" style="display: none;">
+      <form method="post" action="/feed">
+        <div class="outer_col">
+          <h3>Genres</h3>
+          <div class="col">
+            <input type="checkbox" name="genres" value="pop">pop<br>
+            <input type="checkbox" name="genres" value="hip-hop/rap">hip-hop/rap<br>
+            <input type="checkbox" name="genres" value="rock">rock<br>
+          </div>
+          <div class="col">
+            <input type="checkbox" name="genres" value="dance/edm">dance/edm<br>
+            <input type="checkbox" name="genres" value="soul/r&b">soul/r&b<br>
+            <input type="checkbox" name="genres" value="alternative/indie">alternative/indie
+          </div>
+        </div>
+        <div class="outer_col">
+          <h3>Moods</h3>
+          <div class="col">
+            <input type="checkbox" name="moods" value="feel good">feel good<br>
+            <input type="checkbox" name="moods" value="slow/chill">slow/chill<br>
+            <input type="checkbox" name="moods" value="sing-along">sing-along<br>
+          </div>
+          <div class="col">
+            <input type="checkbox" name="moods" value="workout">workout<br>
+            <input type="checkbox" name="moods" value="dance/upbeat">dance/upbeat<br>
+            <input type="checkbox" name="moods" value="oldies">oldies<br>
+          </div>
+        </div>
+        <br><br><input class="btn" type="submit" value="sort"></input>
+      </form>
+    </div>
+    <div class="padding">
+    </div>
+      {% for playlist in playlists %}
+      <div class="widget">
+        <iframe src="{{'https://open.spotify.com/embed/user/' ~ playlist.user_id ~ '/playlist/' ~ playlist.play_id}}" frameborder="0" allowtransparency="true" allow="encrypted-media" onload="$('.widget').css('background-image', 'none');"></iframe>
+        <div class="tags">
+          <p class="label">genres:
+          {% for item in playlist.genres %}
+            {% if loop.index != playlist.genres|length %}
+              {{item}},
+            {% else %}
+              {{item}}
+            {% endif %}
+          {% endfor %}</p>
+          <p class="label"> moods:
+          {% for item in playlist.moods %}
+            {% if loop.index != playlist.moods|length %}
+              {{item}},
+            {% else %}
+              {{item}}
+            {% endif %}
+          {% endfor %}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="below">
+    <div class="below-box">
+      <p>PlayShare © 2018<br>Created by Valeria L.</p>
+    </div>
+  </div>
+</body>
+
+</html>

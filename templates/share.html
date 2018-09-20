@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Share</title>
+  <link rel="stylesheet" href="../styles/share.css">
+  <link rel="shortcut icon" href="../images/PlayShare_logo.png"/>
+</head>
+
+<body>
+  <div class="header">
+    <h1>PlayShare</h1>
+    <!-- <form method="post" action="/main">
+      <input class="home-btn" type="submit" value="PlayShare"></input>
+    </form> -->
+    <a class="logout-btn btn" href="{{logout_link}}">Sign out</a>
+  </div>
+  <div class="bg">
+    <div class="padding">
+    </div>
+    <div class="container">
+      <p class="label">Upload a playlist</p>
+      <div class="select">
+        <form method="post" action="/share">
+          <select name="playlist">
+            {% for item in playlists %}
+              <option value="{{item.name}}">{{item.name}}</option>
+            {% endfor %}
+          </select><br>
+          <h3>Genres</h3>
+          <div class="col">
+            <input type="checkbox" name="genres" value="pop">pop<br>
+            <input type="checkbox" name="genres" value="hip-hop/rap">hip-hop/rap<br>
+            <input type="checkbox" name="genres" value="rock">rock<br>
+          </div>
+          <div class="col">
+            <input type="checkbox" name="genres" value="dance/edm">dance/edm<br>
+            <input type="checkbox" name="genres" value="soul/r&b">soul/r&b<br>
+            <input type="checkbox" name="genres" value="alternative/indie">alternative/indie
+          </div>
+          <h3>Moods</h3>
+          <div class="col">
+            <input type="checkbox" name="moods" value="feel good">feel good<br>
+            <input type="checkbox" name="moods" value="slow/chill">slow/chill<br>
+            <input type="checkbox" name="moods" value="sing-along">sing-along<br>
+          </div>
+          <div class="col">
+            <input type="checkbox" name="moods" value="workout">workout<br>
+            <input type="checkbox" name="moods" value="dance/upbeat">dance/upbeat<br>
+            <input type="checkbox" name="moods" value="oldies">oldies<br>
+          </div>
+          <br><br><input class="btn" type="submit" value="upload"></input>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="below">
+    <div class="below-box">
+      <p>PlayShare © 2018<br>Created by Valeria L.</p>
+    </div>
+  </div>
+</body>
+
+</html>

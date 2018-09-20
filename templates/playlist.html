@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="../styles/playlist.css">
+  <link rel="shortcut icon" href="../images/PlayShare_logo.png"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <h1>PlayShare</h1>
+    <!-- <form method="post" action="/main">
+      <input class="home-btn" type="submit" value="PlayShare"></input>
+    </form> -->
+    <a class="logout-btn btn" href="{{logout_link}}">Sign out</a>
+  </div>
+  <div class="bg">
+    <div class="padding">
+    </div>
+    <div class="widget">
+      <iframe src="{{src}}" frameborder="0" allowtransparency="true" allow="encrypted-media" onload="$('.widget').css('background-image', 'none');"></iframe>
+      <form method="get" action="/share">
+        <input class="share btn" type="submit" value="share this playlist"></input>
+      </form>
+    </div>
+  </div>
+  <div class="below">
+    <div class="below-box">
+      <p>PlayShare © 2018<br>Created by Valeria L.</p>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+html {
+  background: url("../images/circuits.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+body {
+  text-align: center;
+  font-family: helvetica;
+  margin: 0;
+}
+.header {
+  margin: 0;
+  width: 100vw;
+  color: white;
+  padding: 20px 0 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  margin: 0 0 0 0px;
+  font-weight: lighter;
+}
+/* .home-btn {
+  font-family: helvetica;
+  border: 0;
+  font-size: 24pt;
+  background-color: teal;
+  color: white;
+  margin: 0;
+  font-weight: lighter;
+} */
+.logout-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #dd4b47;
+  border-width: thin;
+  padding: 8px;
+  border-radius: 4px;
+  position: absolute; /* ensures that the button stay right */
+  right: 0;
+  margin-right: 10px;
+}
+.btn:hover {
+  background-color: #822522;
+}
+.btn:focus {
+  outline: none;
+}
+.bg {
+  height: 100vh;
+}
+.padding {
+  height: 40px;
+}
+iframe {
+  width: 25vw;
+  height: 70vh;
+}
+.widget {
+  background: url("../images/loading.gif") center center no-repeat;
+  background-size: 100px;
+}
+.share {
+  font-family: helvetica;
+  border: 0;
+  font-size: 14pt;
+  background-color: #dd4b47;
+  color: white;
+  margin: 0;
+  font-weight: lighter;
+  border-radius: 5px;
+  padding: 8px;
+  margin-top: 10px;
+}
+.below {
+  background-color: #ffffffd9;
+  height: 88px;
+  width: 100vw;
+  display: flex;
+}
+.below-box {
+  font-family: helvetica;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 14pt;
+  margin: auto;
+}
