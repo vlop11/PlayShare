@@ -20,31 +20,40 @@ h1 {
   margin: 0 0 0 0px;
   font-weight: lighter;
 }
-/* .home-btn {
-  font-family: helvetica;
-  border: 0;
-  font-size: 24pt;
-  background-color: teal;
-  color: white;
-  margin: 0;
-  font-weight: lighter;
-} */
-.logout-btn {
-  text-decoration: none;
+.btn {
   color: white;
   background-color: #dd4b47;
-  border-width: thin;
   padding: 8px;
   border-radius: 4px;
-  position: absolute; /* ensures that the button stay right */
-  right: 0;
-  margin-right: 10px;
+  border: none;
+  font-size: 12pt;
 }
 .btn:hover {
   background-color: #822522;
 }
 .btn:focus {
   outline: none;
+}
+.dropdown {
+  position: absolute;
+  left: 0;
+  margin-left: 10px;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+}
+.dropdown-content a {
+  background-color: #ffffffd9;
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+}
+.dropdown-content a:hover {
+  background-color: #a0a0a0;
 }
 .bg {
   height: 100vh;

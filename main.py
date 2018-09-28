@@ -42,9 +42,9 @@ def get_access_token(request_handler):
     # post request body parameters
     data = {'grant_type': "authorization_code",
     'code': code,
-    'redirect_uri': '', #redirect uri
-    'client_id': '', #client id
-    'client_secret': ''} #client secret
+    'redirect_uri': '', # redirect uri
+    'client_id': '', # client id
+    'client_secret': ''} # client secret
 
     # post request header parameters with base64 encoded credentials
     header = {'Authorization': 'Basic ' + base64.b64encode("%s:%s" % (client_id, client_secret))}
@@ -61,9 +61,6 @@ def get_access_token(request_handler):
     return token_dict
 
 # declares global variables to be changed later to actual values
-access_token = ''
-refresh_token = ''
-user_id = ''
 play_id = ''
 playlist_title = ''
 shared_playlists = []
@@ -103,8 +100,8 @@ class Login(webapp2.RequestHandler):
 class Authorize(webapp2.RequestHandler):
     def get(self):
         # set query parameters
-        payload = {'client_id': '', #client id
-        'redirect_uri': '', #redirect uri
+        payload = {'client_id': '', # client id
+        'redirect_uri': '', # redirect uri
         'response_type': 'code',
         'state': None,
         'scope': 'playlist-modify-public'}
@@ -120,24 +117,22 @@ class CallBack(webapp2.RequestHandler):
     def get(self):
         # creates dict of token values
         token_dict = get_access_token(self)
+        current_user = get_logged_in_user(self)
         # grabs tokens as variables
         local_access = token_dict['access_token']
         local_refresh = token_dict['refresh_token']
-        # IMPORTANT
-        # changes global token values to be the ACTUAL token values
-        global access_token
-        access_token = local_access
-        global refresh_token
-        refresh_token = local_refresh
+        #sends to ndb for current user
+        current_user.access_token = local_access
+        current_user.refresh_token = local_refresh
+        current_user.put()
 
         # redirects to search page
-        self.redirect('/search')
+        self.redirect('/feed')
 
 class SearchPage(webapp2.RequestHandler):
     def get(self):
-        global access_token
-        global user_id
         current_user = get_logged_in_user(self)
+        access_token = current_user.access_token
 
         header = {'Authorization': 'Bearer ' + access_token}
 
@@ -152,11 +147,11 @@ class SearchPage(webapp2.RequestHandler):
         self.response.write(search_template.render(logout))
 
     def post(self):
-        global access_token
-        global user_id
         global play_id
         global playlist_title
         current_user = get_logged_in_user(self)
+        access_token = current_user.access_token
+        user_id = current_user.user_id
 
         # grabs earch query and declares requests params and header
         query = self.request.get('search_word')
@@ -190,9 +185,10 @@ class SearchPage(webapp2.RequestHandler):
 
 class PlaylistPage(webapp2.RequestHandler):
     def get(self):
-        global user_id
         global play_id
         global playlist_title
+        current_user = get_logged_in_user(self)
+        user_id = current_user.user_id
 
         # src url for embed code in html
         src = str('https://open.spotify.com/embed/user/' + user_id + '/playlist/' + play_id)
@@ -203,9 +199,10 @@ class PlaylistPage(webapp2.RequestHandler):
 
 class SharePage(webapp2.RequestHandler):
     def get(self):
-        global access_token
         global shared_playlists
         shared_playlists = [] #resets every time so no duplicates
+        current_user = get_logged_in_user(self)
+        access_token = current_user.access_token
 
         header = {'Authorization': 'Bearer ' + access_token}
 
@@ -227,7 +224,8 @@ class SharePage(webapp2.RequestHandler):
 
     def post(self):
         global shared_playlists
-        global user_id
+        current_user = get_logged_in_user(self)
+        user_id = current_user.user_id
         title = self.request.get('playlist')
         genres = self.request.get_all('genres')
         moods = self.request.get_all('moods')

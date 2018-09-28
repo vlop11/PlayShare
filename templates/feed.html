@@ -14,14 +14,37 @@
       $(".sort").animate({height: 'toggle'});
     });
   });
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+    $(".dropdown-content").animate({height: 'toggle'});
+  }
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('#dropbtn')) {
+
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          $(".dropdown-content").animate({height: 'toggle'});
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
   </script>
   <div class="header">
     <h1>PlayShare</h1>
-    <!-- <form method="post" action="/main">
-      <input class="home-btn" type="submit" value="PlayShare"></input>
-    </form> -->
-    <a class="logout-btn btn" href="{{logout_link}}">Sign out</a>
-    <button id="show_btn" class="navbutton btn">search by genre/mood</button>
+    <div class="dropdown">
+      <button onclick="myFunction()" id="dropbtn" class="btn" style="width: 35px;">☰</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="/search">playlist generator</a>
+        <a href="/share">share a playlist</a>
+        <a href="{{logout_link}}">sign out</a>
+      </div>
+    </div>
+    <button id="show_btn" class="search_btn btn">search by genre/mood</button>
   </div>
   <div class="bg">
     <div class="sort" style="display: none;">

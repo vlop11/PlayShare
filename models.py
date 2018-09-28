@@ -2,6 +2,8 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 
 class User(ndb.Model):
+    access_token = ndb.StringProperty()
+    refresh_token = ndb.StringProperty()
     user_id = ndb.StringProperty()
     playlists = ndb.StringProperty(repeated=True)
 
