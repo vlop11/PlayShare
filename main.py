@@ -18,9 +18,14 @@ jinja_current_directory = jinja2.Environment(
     extensions = ['jinja2.ext.autoescape'],
     autoescape = True)
 
-client_id = "d9cfef7e382a4ede94a79223cfa0e10e"
-client_secret = "e4731cfa01a44b0380973460429d384e"
-redirect_uri = 'http://localhost:8080/callback'
+try:
+    keys_file = open('keys.txt', 'r')
+
+    client_id = keys_file.readline().strip()
+    client_secret = keys_file.readline().strip()
+    redirect_uri = keys_file.readline().strip()
+finally:
+    keys_file.close()
 
 def get_logged_in_user(request_handler):
     # gets current user
