@@ -1,0 +1,131 @@
+body {
+  text-align: center;
+  font-family: helvetica;
+  margin: 0;
+  overflow-y: scroll;
+  background: url("../images/circuits.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+.header {
+  margin: 0;
+  width: 100vw;
+  color: white;
+  padding: 20px 0 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  margin: 0;
+  font-weight: lighter;
+}
+.btn {
+  color: white;
+  background-color: #dd4b47;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  font-size: 12pt;
+}
+.btn:hover {
+  background-color: #822522;
+}
+.btn:focus {
+  outline: none;
+}
+.dropdown {
+  position: absolute;
+  left: 0;
+  margin-left: 10px;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+}
+.dropdown-content a {
+  background-color: #ffffffd9;
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+}
+.dropdown-content a:hover {
+  background-color: #a0a0a0;
+}
+.bg {
+  min-height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+/* h3 {
+  font-weight: lighter;
+  font-size: 14pt;
+  margin: 10px;
+}
+.outer_col {
+  display: inline-block;
+  margin-left: 10px;
+}
+.col {
+  display: inline-block;
+  padding-right: 15px;
+  text-align: left;
+  font-size: 12pt;
+} */
+/* .widget {
+  background: url("../images/loading.gif") center center no-repeat;
+  background-size: 100px;
+  display: inline-block;
+  margin: 10px 10px;
+} */
+/* iframe {
+  width: 25vw;
+  height: 70vh;
+} */
+.bg {
+  height: 100vh;
+}
+.padding {
+  height: 40px;
+}
+.container {
+  background-color: #ffffffcf;
+  height: 75vh;
+  width: 75vw;
+  margin: auto;
+  border-radius: 10px;
+  /* box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .5), 0 10px 40px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 15px 15px 33px -8px #000000;
+}
+/* input[type=submit] {
+  //margin-top: 120px;
+  border: 0;
+  font-size: 12pt;
+  background-color: #dd4b47;
+  color: white;
+  border-radius: 5px;
+  padding: 8px;
+} */
+.label {
+  padding: 40px 0 20px 0;
+  font-size: 18pt;
+  font-weight: lighter;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+}
+h3 {
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.remove_play {
+  display: flex;
+  justify-content: space-between;
+}
+.play_title {
+  margin-left: 20px;
+}
+#remove {
+  margin-right: 20px;
+}

@@ -34,6 +34,7 @@
     }
   }
   </script>
+
   <div class="header">
     <h1>PlayShare</h1>
     <div class="dropdown">
@@ -82,7 +83,7 @@
     </div>
       {% for playlist in playlists %}
       <div class="widget">
-        <iframe src="{{'https://open.spotify.com/embed/user/' ~ playlist.user_id ~ '/playlist/' ~ playlist.play_id}}" frameborder="0" allowtransparency="true" allow="encrypted-media" onload="$('.widget').css('background-image', 'none');"></iframe>
+        <iframe src="{{'https://open.spotify.com/embed/playlist/' ~ playlist.play_id}}" frameborder="0" allowtransparency="true" allow="encrypted-media" onload="$('.widget').css('background-image', 'none');"></iframe>
         <div class="tags">
           <p class="label">genres:
           {% for item in playlist.genres %}

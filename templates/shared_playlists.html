@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Main Page</title>
-  <link rel="stylesheet" href="../styles/search.css">
-  <link rel="shortcut icon" href="../images/PlayShare_logo.png" />
+  <title>Feed</title>
+  <link rel="stylesheet" href="../styles/shared_playlists.css">
+  <link rel="shortcut icon" href="../images/PlayShare_logo.png"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
   <script type="text/javascript">
+  $(document).ready(function() {
+    $('#show_btn').click(function() {
+      $(".sort").animate({height: 'toggle'});
+    });
+  });
   function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
     $(".dropdown-content").animate({height: 'toggle'});
@@ -28,33 +34,33 @@
     }
   }
   </script>
+
   <div class="header">
     <h1>PlayShare</h1>
     <div class="dropdown">
       <button onclick="myFunction()" id="dropbtn" class="btn" style="width: 35px;">☰</button>
       <div id="myDropdown" class="dropdown-content">
-        <a href="/feed">feed</a>
+        <a href="/search">playlist generator</a>
         <a href="/share">share a playlist</a>
         <a href="{{logout_link}}">sign out</a>
       </div>
     </div>
   </div>
+
   <div class="bg">
     <div class="padding">
     </div>
     <div class="container">
-      <form method="post" action="/search">
-        <p class="label">Search any word to create a playlist based around your theme</p>
-        <input name="search_word" type='text' placeholder="keyword"></input>
-        <input class="btn" type="submit" value="Create!"></input>
-      </form>
+      <p class="label">My uploaded playlists</p>
+        <form method="post" action="/remove" class="remove_play">
+            {% for item in myplay %}
+              <p class="play_title">{{item.play_name}}</p>
+              <input class="btn" id="remove" type="submit" value="Remove"></input>
+            {% endfor %}
+        </form>
     </div>
   </div>
-  <div class="below">
-    <div class="below-box">
-      <p>PlayShare © 2018<br>Created by Valeria L.</p>
-    </div>
-  </div>
+
 </body>
 
 </html>

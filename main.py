@@ -18,6 +18,10 @@ jinja_current_directory = jinja2.Environment(
     extensions = ['jinja2.ext.autoescape'],
     autoescape = True)
 
+client_id = "d9cfef7e382a4ede94a79223cfa0e10e"
+client_secret = "e4731cfa01a44b0380973460429d384e"
+redirect_uri = 'http://localhost:8080/callback'
+
 def get_logged_in_user(request_handler):
     # gets current user
     user = users.get_current_user()
@@ -42,9 +46,9 @@ def get_access_token(request_handler):
     # post request body parameters
     data = {'grant_type': "authorization_code",
     'code': code,
-    'redirect_uri': '', # redirect uri
-    'client_id': '', # client id
-    'client_secret': ''} # client secret
+    'redirect_uri': redirect_uri, # redirect uri
+    'client_id': client_id, # client id
+    'client_secret': client_secret} # client secret
 
     # post request header parameters with base64 encoded credentials
     header = {'Authorization': 'Basic ' + base64.b64encode("%s:%s" % (client_id, client_secret))}
@@ -100,8 +104,8 @@ class Login(webapp2.RequestHandler):
 class Authorize(webapp2.RequestHandler):
     def get(self):
         # set query parameters
-        payload = {'client_id': '', # client id
-        'redirect_uri': '', # redirect uri
+        payload = {'client_id': client_id, # client id
+        'redirect_uri': redirect_uri, # redirect uri
         'response_type': 'code',
         'state': None,
         'scope': 'playlist-modify-public'}
@@ -191,7 +195,7 @@ class PlaylistPage(webapp2.RequestHandler):
         user_id = current_user.user_id
 
         # src url for embed code in html
-        src = str('https://open.spotify.com/embed/user/' + user_id + '/playlist/' + play_id)
+        src = str('https://open.spotify.com/embed/playlist/' + play_id)
         embed_dict = {'logout_link' : users.create_logout_url('/'), 'src': src, 'title': playlist_title}
 
         playlist_template = jinja_current_directory.get_template('templates/playlist.html')
@@ -241,7 +245,7 @@ class SharePage(webapp2.RequestHandler):
                     entity.moods = moods
                     entity.put() #updates playlist
                 else:
-                    playlist_obj = SharedPlaylists(play_id=id, user_id=user_id, genres=genres, moods=moods)
+                    playlist_obj = SharedPlaylists(play_name=title, play_id=id, user_id=user_id, genres=genres, moods=moods)
                     playlist_obj.put() #creates new playlist obj
 
         self.redirect('/feed')
@@ -302,6 +306,18 @@ class FeedPage(webapp2.RequestHandler):
 
             self.response.write(feed_template.render(sorted_dict))
 
+class MyPlaylistsPage(webapp2.RequestHandler):
+    def get(self):
+        current_user = get_logged_in_user(self)
+        user_id = current_user.user_id
+
+        myplay = SharedPlaylists.query(SharedPlaylists.user_id == user_id).fetch()
+        shared_dict = {'logout_link' : users.create_logout_url('/'), 'myplay' : myplay}
+
+        myplay_template = jinja_current_directory.get_template('templates/shared_playlists.html')
+        self.response.write(myplay_template.render(shared_dict))
+
+
 app = webapp2.WSGIApplication([
     ('/', StartPage),
     ('/login', Login),
@@ -310,5 +326,6 @@ app = webapp2.WSGIApplication([
     ('/search', SearchPage),
     ('/playlist', PlaylistPage),
     ('/share', SharePage),
-    ('/feed', FeedPage)
+    ('/feed', FeedPage),
+    ('/myprofile', MyPlaylistsPage)
 ], debug=True)

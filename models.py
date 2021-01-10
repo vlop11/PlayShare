@@ -29,6 +29,7 @@ class User(ndb.Model):
         return uris #returns the list of track uris w/no duplicates
 
 class SharedPlaylists(ndb.Model):
+    play_name = ndb.StringProperty()
     play_id = ndb.StringProperty()
     user_id = ndb.StringProperty()
     genres = ndb.StringProperty(repeated=True)
